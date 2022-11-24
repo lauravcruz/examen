@@ -64,13 +64,14 @@ class Cliente
 
     public function devolver(int $numSoporte): bool
     {
-        //TODO: voy x aquí, esto no funciona: 
         //Comprobamos que esté alquilado 
-        foreach ($this->soportesAlquilados as $alquilado) {
+        foreach ($this->soportesAlquilados as $alquilado => $valor) {
             //Si está alquilado, aceptamos la devolución y actualizamos el num de alquilados
-            echo $alquilado->getNumero() . "??" . $numSoporte; 
-            if ($alquilado->getNumero() == $numSoporte) {
+            echo $valor->getNumero() . "??" . $numSoporte;
+            if ($valor->getNumero() == $numSoporte) {
+                //Si se acepta la devolución, restamos 1 a los soportes alquilados y lo sacamos del array
                 $this->numSoportesAlquilados--;
+                unset($this->soportesAlquilados[$alquilado]);
                 echo "<p>Devolución completada</p>";
                 return true;
             }
@@ -78,17 +79,16 @@ class Cliente
         echo "<p>Error: el soporte no estaba alquilado</p>";
         return false;
     }
-
     public function listaAlquileres(): void
     {
         echo "<p>Número de alquileres: $this->numSoportesAlquilados</p><ul>";
         foreach ($this->soportesAlquilados as $alquilado) {
-            echo "<li>$alquilado->titulo</li>";
+            echo "<li>" . $alquilado->titulo . "</li>";
         }
         echo "</ul>";
     }
 
-    public function muestraResumen()
+    public function muestraResumen(): void
     {
         echo "<p>Nombre: $this->nombre</p>
         <p>Cantidad de alquileres: $this->numSoportesAlquilados</p>";

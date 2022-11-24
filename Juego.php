@@ -5,7 +5,6 @@ include_once "Soporte.php";
 
 class Juego extends Soporte
 {
-
     public function __construct(
         string $titulo,
         int $numero,
@@ -19,18 +18,17 @@ class Juego extends Soporte
 
     public function mostrarJugadoresPosibles()
     {
-        if ($this->maxNumJugadores <= 1) {
-            //Si el número máximo de jugadores es 1 o menor, mostramos solo 1: 
+        if ($this->minNumJugadores == 1 && $this->maxNumJugadores == 1) {
             return "1 jugador";
         } else {
             return "De $this->minNumJugadores  a  $this->maxNumJugadores jugadores";
         }
     }
-
-    public function muestraResumen()
+    
+    public function muestraResumen(): void
     {
-        parent::muestraResumen();
-        echo "<p>Consola: $this->consola </p>
+        echo parent::muestraResumen() .
+            "<p>Consola: $this->consola </p>
         <p>" . $this->mostrarJugadoresPosibles() . "</p>";
     }
 }

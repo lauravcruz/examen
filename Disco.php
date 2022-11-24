@@ -15,10 +15,10 @@ class Disco extends Soporte
         parent::__construct($titulo, $numero, $precio);
     }
 
-    public function muestraResumen()
+    public function muestraResumen(): void
     {
-        parent::muestraResumen();
-        echo "<p>Idiomas: $this->idiomas</p>
+        echo parent::muestraResumen() .
+            "<p>Idiomas: $this->idiomas</p>
         <p>Formato de pantalla: $this->formatPantalla</p>";
     }
 }

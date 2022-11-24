@@ -1,11 +1,16 @@
 <?php
 
 declare(strict_types=1);
+include_once("Resumible.php");
 
-class Soporte
+/*Al hacerla abstracta, no podemos instanciarla. Simplemente sirve de plantilla
+para las clases que hereden de ella. En este caso viene muy bien porque nunca vamos a crear un
+objeto Soporte. Crearemos DVD, Juego o Cinta. Las propiedades que los 3 comparte son las 
+que tenemos en Soporte*/
+
+abstract class Soporte implements Resumible
 {
     const IVA = 0.21;
-    //TODO: estática privada??
 
     public function __construct(
         public String $titulo,
@@ -27,7 +32,7 @@ class Soporte
         return $this->precio - ($this->precio * $this::IVA);
     }
 
-    public function muestraResumen()
+    public function muestraResumen(): void
     {
         echo "<p>Nombre: $this->titulo</p>
         <p>Precio: " . $this->precio . " euros</p>

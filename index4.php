@@ -28,10 +28,9 @@ $cliente1->alquilar($soporte1);
 //este soporte no lo va a poder alquilar
 $cliente1->alquilar($soporte4);
 //este soporte no lo tiene alquilado
-echo "este no:"; 
 $cliente1->devolver(4);
 //devuelvo un soporte que sí que tiene alquilado
-$cliente1->devolver(2);
+$cliente1->devolver(26);
 //alquilo otro soporte
 $cliente1->alquilar($soporte4);
 //listo los elementos alquilados

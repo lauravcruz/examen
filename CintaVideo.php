@@ -14,9 +14,8 @@ class CintaVideo extends Soporte
         parent::__construct($titulo, $numero, $precio);
     }
 
-    public function muestraResumen()
+    public function muestraResumen(): void
     {
-        parent::muestraResumen();
-        echo "<p>Duración: $this->duracion</p>";
+        echo parent::muestraResumen() . "<p>Duración: $this->duracion</p>";
     }
 }
