@@ -10,9 +10,9 @@ include_once("Cliente.php");
 class Videoclub
 {
     private $productos = []; //Tipo soporte
-    private $numProductos;
+    private $numProductos = 0;
     private $socios = []; //Tipo cliente
-    private $numSocios;
+    private $numSocios = 0;
 
     public function __construct(
         private String $nombre
@@ -23,25 +23,29 @@ class Videoclub
         array_push($this->productos, $producto);
     }
 
-    public function incluirCintaVideo($titulo, $numero, $precio, $duracion)
+    public function incluirCintaVideo($titulo, $precio, $duracion)
     {
-        $cinta = new CintaVideo($titulo, $numero, $precio, $duracion);
+        ++$this->numProductos;
+        $cinta = new CintaVideo($titulo, $this->numProductos, $precio, $duracion);
         $this->incluirProducto($cinta);
     }
 
-    public function incluirDVD($titulo, $numero, $precio, $idiomas, $pantalla)
+    public function incluirDVD($titulo, $precio, $idiomas, $pantalla)
     {
-        $dvd = new Disco($titulo, $numero, $precio, $idiomas, $pantalla);
+        ++$this->numProductos;
+        $dvd = new Disco($titulo, $this->numProductos, $precio, $idiomas, $pantalla);
         $this->incluirProducto($dvd);
     }
-    public function incluirJuego($titulo, $numero,  $precio, $consola, $minJ, $maxJ)
+    public function incluirJuego($titulo, $precio, $consola, $minJ, $maxJ)
     {
-        $juego = new Juego($titulo, $numero, $precio, $consola, $minJ, $maxJ);
+        ++$this->numProductos;
+        $juego = new Juego($titulo, $this->numProductos, $precio, $consola, $minJ, $maxJ);
         $this->incluirProducto($juego);
     }
     public function incluirSocio($nombre, $maxAlquileresConcurrentes = 3)
     {
-        $cliente = new Cliente($nombre, $maxAlquileresConcurrentes);
+        ++$this->numSocios;
+        $cliente = new Cliente($nombre, $this->numSocios, $maxAlquileresConcurrentes);
         array_push($this->socios, $cliente);
     }
 
@@ -59,7 +63,30 @@ class Videoclub
         echo "<p>SOCIOS: </p><ul>";
         foreach ($this->socios as $socio) {
             echo "<li>$socio->nombre</li>";
+            echo $socio->listaAlquileres();
         }
         echo "</ul>";
+    }
+
+    public function alquilaSocioProducto($numeroCliente, $numeroSoporte)
+    {
+        $completado = false;
+        //Buscamos al socio para identificarlo con el número
+        foreach ($this->socios as $socio) {
+            if ($socio->getNumero() == $numeroCliente) {
+                //Identificamos el soporte de la misma manera: 
+                foreach ($this->productos as $soporte) {
+                    if ($soporte->getNumero() == $numeroSoporte) {
+                        //Una vez encontrados ambos, realizamos la acción de alquilar
+                        $socio->alquilar($soporte);
+                        $completado = true;
+                    }
+                }
+            }
+        }
+        if (!$completado) {
+            //Mandamos el mensaje de error por si metemos ids que no existen
+            echo "Error: nº de soporte o nº de socio no encontrado";
+        }
     }
 }

@@ -67,7 +67,6 @@ class Cliente
         //Comprobamos que esté alquilado 
         foreach ($this->soportesAlquilados as $alquilado => $valor) {
             //Si está alquilado, aceptamos la devolución y actualizamos el num de alquilados
-            echo $valor->getNumero() . "??" . $numSoporte;
             if ($valor->getNumero() == $numSoporte) {
                 //Si se acepta la devolución, restamos 1 a los soportes alquilados y lo sacamos del array
                 $this->numSoportesAlquilados--;
