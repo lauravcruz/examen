@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace examen\app;
+namespace examenPHP\app;
 //include_once "app/Cliente.php";
 //include_once "app/Juego.php";
 // include_once "app/Disco.php";

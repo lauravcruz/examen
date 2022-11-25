@@ -4,7 +4,7 @@
 //Cargamos el autoload y usamos la clase que necesitemos en cada index
 include_once("autoload.php");
 
-use examen\app\CintaVideo;
+use examenPHP\app\CintaVideo;
 
 /*Al hacer Soporte abstracta, ya no podemos crear un objeto de este tipo: 
 

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace examen\app;
+namespace examenPHP\app;
 
 class Cliente
 {

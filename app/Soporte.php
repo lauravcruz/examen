@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace examen\app;
+namespace examenPHP\app;
 
 //include_once "Resumible.php"; 
 include_once("autoload.php");
