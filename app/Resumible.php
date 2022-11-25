@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace examenPHP\app;
+namespace examen\app;
 
 interface Resumible
 {

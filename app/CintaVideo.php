@@ -2,7 +2,8 @@
 
 declare(strict_types=1);
 
-namespace examenPHP\app;
+//He tenido que cambiar examen por examen porque Docker me cogía todo como mayúscula y no me dajaba acceder desde localhost
+namespace examen\app;
 
 //include_once "Soporte.php"; 
 include_once "autoload.php";

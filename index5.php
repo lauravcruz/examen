@@ -2,7 +2,7 @@
 //include_once "app/Videoclub.php";
 include_once("autoload.php");
 
-use examenPHP\app\Videoclub;
+use examen\app\Videoclub;
 
 $vc = new Videoclub("Severo 8A");
 

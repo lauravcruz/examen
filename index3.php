@@ -1,7 +1,7 @@
 <?php
 //include_once "app/Juego.php";
 include_once "autoload.php";
-use examenPHP\app\Juego;
+use examen\app\Juego;
 
 $miJuego = new Juego("God of War: Ragnarök", 26, 49.99, "PS4", 1, 1); 
 echo "<strong>" . $miJuego->titulo . "</strong>"; 

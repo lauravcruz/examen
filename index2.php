@@ -1,7 +1,7 @@
 <?php
 //include_once "app/Disco.php";
 include_once "autoload.php";
-use examenPHP\app\Disco;
+use examen\app\Disco;
 
 $miDisco = new Disco("Origen", 24, 15, "es,en,fr", "16:9");
 echo "<strong>" . $miDisco->titulo . "</strong>";

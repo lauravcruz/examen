@@ -5,10 +5,10 @@
 // include_once "app/CintaVideo.php";
 include_once("autoload.php");
 
-use examenPHP\app\Cliente;
-use examenPHP\app\Juego;
-use examenPHP\app\Disco;
-use examenPHP\app\CintaVideo;
+use examen\app\Cliente;
+use examen\app\Juego;
+use examen\app\Disco;
+use examen\app\CintaVideo;
 
 $cliente1 = new Cliente("Bruce Wayne", 23);
 $cliente2 = new Cliente("Clark Kent", 33);
