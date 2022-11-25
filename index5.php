@@ -1,8 +1,8 @@
 <?php
-include_once("Videoclub.php");
+//include_once "app/Videoclub.php";
+include_once("autoload.php");
 
-use \examen\app\Videoclub;
-
+use examen\app\Videoclub;
 
 $vc = new Videoclub("Severo 8A");
 

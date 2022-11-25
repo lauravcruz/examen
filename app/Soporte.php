@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace examen\app;
 
-include_once "autoload";
-
+//include_once "Resumible.php"; 
+include_once("autoload.php");
 
 /*Al hacerla abstracta, no podemos instanciarla. Simplemente sirve de plantilla
 para las clases que hereden de ella. En este caso viene muy bien porque nunca vamos a crear un

@@ -1,14 +1,14 @@
 <?php
+// include_once "app/Cliente.php";
+// include_once "app/Juego.php";
+// include_once "app/Disco.php";
+// include_once "app/CintaVideo.php";
+include_once("autoload.php");
 
-include_once("Cliente.php");
-include_once("Juego.php");
-include_once("Disco.php");
-include_once("CintaVideo.php");
-
-use \examen\app\Cliente;
-use \examen\app\Juego;
-use \examen\app\Disco;
-use \examen\app\CintaVideo;
+use examen\app\Cliente;
+use examen\app\Juego;
+use examen\app\Disco;
+use examen\app\CintaVideo;
 
 $cliente1 = new Cliente("Bruce Wayne", 23);
 $cliente2 = new Cliente("Clark Kent", 33);

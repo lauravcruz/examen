@@ -1,7 +1,10 @@
 <?php
+//include_once "app/CintaVideo.php";
 
-include_once("autoload.php"); 
+//Cargamos el autoload y usamos la clase que necesitemos en cada index
+include_once("autoload.php");
 
+use examen\app\CintaVideo;
 
 /*Al hacer Soporte abstracta, ya no podemos crear un objeto de este tipo: 
 
@@ -11,7 +14,7 @@ echo "<br>Precio: " . $soporte1->getPrecio() . " euros";
 echo "<br>Precio IVA incluido: " . $soporte1->getPrecioConIVA() . " euros<br>";
 $soporte1->muestraResumen();*/
 
-$miCinta = new CintaVideo("Los cazafantasmas", 23, 3.5, 107);
+$miCinta = new Cintavideo("Los cazafantasmas", 23, 3.5, 107);
 echo "<strong>" . $miCinta->titulo . "</strong>";
 echo "<br>Precio: " . $miCinta->getPrecio() . " euros";
 echo "<br>Precio IVA incluido: " . $miCinta->getPrecioConIva() . " euros";

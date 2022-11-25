@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 function autoload($nombreClase)
 {
-    include_once "$nombreClase.php";
+    include_once "..\\" . $nombreClase . ".php";
 };
 
 spl_autoload_register('autoload');
+
+//Incluimos autoload en cada clase y automáticamente se cargan las que se necesiten

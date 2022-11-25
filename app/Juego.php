@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace examen\app;
 
-include_once "autoload";
-
+//include_once "Soporte.php"; 
+include_once "autoload.php";
 
 class Juego extends Soporte
 {

@@ -1,13 +1,13 @@
 <?php
+
 declare(strict_types=1);
 
 namespace examen\app;
-
-include_once("Soporte.php");
-include_once("Juego.php");
-include_once("Disco.php");
-include_once("CintaVideo.php");
-include_once("Cliente.php");
+//include_once "app/Cliente.php";
+//include_once "app/Juego.php";
+// include_once "app/Disco.php";
+// include_once "app/CintaVideo.php";
+include_once("autoload.php");
 
 class Videoclub
 {
