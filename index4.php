@@ -1,8 +1,14 @@
 <?php
-include "Cliente.php";
-include "Disco.php";
-include "Juego.php";
-include "CintaVideo.php";
+
+include_once("Cliente.php");
+include_once("Juego.php");
+include_once("Disco.php");
+include_once("CintaVideo.php");
+
+use \examen\app\Cliente;
+use \examen\app\Juego;
+use \examen\app\Disco;
+use \examen\app\CintaVideo;
 
 $cliente1 = new Cliente("Bruce Wayne", 23);
 $cliente2 = new Cliente("Clark Kent", 33);
@@ -38,3 +44,8 @@ $cliente1->listaAlquileres();
 //este cliente no tiene alquileres
 $cliente2->devolver(2);
 
+//PROBAMOS EL ENCADENAMIENTO DE MÉTODOS: 
+echo "Encadenamiento: ";
+$cliente2->alquilar($soporte1)->devolver(23);
+$cliente2->alquilar($soporte3)->devolver(24)->alquilar($soporte3);
+$cliente2->devolver(24)->alquilar($soporte1);

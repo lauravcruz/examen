@@ -1,7 +1,11 @@
 <?php
 
 declare(strict_types=1);
-include_once "Soporte.php";
+
+namespace examen\app;
+
+include_once "autoload";
+
 
 class Juego extends Soporte
 {
@@ -24,7 +28,7 @@ class Juego extends Soporte
             return "De $this->minNumJugadores  a  $this->maxNumJugadores jugadores";
         }
     }
-    
+
     public function muestraResumen(): void
     {
         echo parent::muestraResumen() .
@@ -32,3 +36,5 @@ class Juego extends Soporte
         <p>" . $this->mostrarJugadoresPosibles() . "</p>";
     }
 }
+
+$miDisco = new Disco("Origen", 24, 15, "es,en,fr", "16:9");

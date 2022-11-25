@@ -1,6 +1,8 @@
 <?php
-
 declare(strict_types=1);
+
+namespace examen\app;
+
 include_once("Soporte.php");
 include_once("Juego.php");
 include_once("Disco.php");
@@ -78,8 +80,8 @@ class Videoclub
                 foreach ($this->productos as $soporte) {
                     if ($soporte->getNumero() == $numeroSoporte) {
                         //Una vez encontrados ambos, realizamos la acción de alquilar
-                        $socio->alquilar($soporte);
                         $completado = true;
+                        $socio->alquilar($soporte);
                     }
                 }
             }
@@ -88,5 +90,6 @@ class Videoclub
             //Mandamos el mensaje de error por si metemos ids que no existen
             echo "Error: nº de soporte o nº de socio no encontrado";
         }
+        return $this;
     }
 }

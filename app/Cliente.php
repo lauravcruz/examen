@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+namespace examen\app;
+
 class Cliente
 {
     private $soportesAlquilados = []; //Tipo disco, cinta... heredados de soporte
@@ -41,29 +43,31 @@ class Cliente
         return false;
     }
 
-    public function alquilar(Soporte $s): bool
+    public function alquilar(Soporte $s)
     {
         //Comprobamos que el soporte no esté alquilado
         if (!$this->tieneAlquilado($s)) {
             //Comprobamos que no haya superado el cupo de alquileres
             if ($this->numSoportesAlquilados >= $this->maxAlquilerconcurrente) {
                 echo "<p>Error: ha superado el cupo de alquileres</p>";
-                return false;
+                //return false;
             } else {
                 //Añadimos el soporte
                 array_push($this->soportesAlquilados, $s);
                 $this->numSoportesAlquilados++;
                 echo "<p>¡Has alquilado $s->titulo!</p>";
-                return true;
+                //return true; 
             }
         } else {
             echo "<p>Ese soporte ya lo tiene alquilado</p>";
-            return false;
+            //return false;
         }
+        return $this;
     }
 
-    public function devolver(int $numSoporte): bool
+    public function devolver(int $numSoporte)
     {
+        $completado = false;
         //Comprobamos que esté alquilado 
         foreach ($this->soportesAlquilados as $alquilado => $valor) {
             //Si está alquilado, aceptamos la devolución y actualizamos el num de alquilados
@@ -72,11 +76,15 @@ class Cliente
                 $this->numSoportesAlquilados--;
                 unset($this->soportesAlquilados[$alquilado]);
                 echo "<p>Devolución completada</p>";
-                return true;
+                //return true
+                $completado = true;
             }
         }
-        echo "<p>Error: el soporte no estaba alquilado</p>";
-        return false;
+        if (!$completado) {
+            echo "<p>Error: el soporte no estaba alquilado</p>";
+            //return false
+        }
+        return $this;
     }
     public function listaAlquileres(): void
     {

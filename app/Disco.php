@@ -1,6 +1,8 @@
 <?php
-
 declare(strict_types=1);
+
+namespace examen\app;
+
 include_once "Soporte.php";
 
 class Disco extends Soporte

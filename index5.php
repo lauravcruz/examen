@@ -1,5 +1,8 @@
 <?php
-include_once "Videoclub.php"; // No incluimos nada más
+include_once("Videoclub.php");
+
+use \examen\app\Videoclub;
+
 
 $vc = new Videoclub("Severo 8A");
 
@@ -38,4 +41,9 @@ $vc->listarSocios();
 $vc->alquilaSocioProducto(2, 3);
 $vc->alquilaSocioProducto(2, 4);
 $vc->alquilaSocioProducto(2, 5);
-$vc->alquilaSocioProducto(2, 9);
+
+//PROBAMOS ENCADENAMIENTO: 
+echo "Encadenamiento";
+$vc->incluirSocio("Batman", 2);
+$vc->incluirSocio("Robin");
+$vc->alquilaSocioProducto(3, 6)->alquilaSocioProducto(3, 7)->alquilaSocioProducto(4, 5);
