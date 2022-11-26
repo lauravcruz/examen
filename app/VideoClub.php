@@ -3,6 +3,12 @@
 declare(strict_types=1);
 
 namespace examen\app;
+
+use examen\util\ClienteNoEncontradoException;
+use examen\util\CupoSuperadoException;
+use examen\util\SoporteNoEncontradoException;
+use examen\util\SoporteYaAlquiladoException;
+
 //include_once "app/Cliente.php";
 //include_once "app/Juego.php";
 // include_once "app/Disco.php";
@@ -15,6 +21,9 @@ class Videoclub
     private $numProductos = 0;
     private $socios = []; //Tipo cliente
     private $numSocios = 0;
+    private $numProductosAlquilados = 0;
+    private $numTotalAlquileres = 0;
+
 
     public function __construct(
         private String $nombre
@@ -72,23 +81,152 @@ class Videoclub
 
     public function alquilaSocioProducto($numeroCliente, $numeroSoporte)
     {
-        $completado = false;
-        //Buscamos al socio para identificarlo con el número
-        foreach ($this->socios as $socio) {
-            if ($socio->getNumero() == $numeroCliente) {
-                //Identificamos el soporte de la misma manera: 
-                foreach ($this->productos as $soporte) {
-                    if ($soporte->getNumero() == $numeroSoporte) {
-                        //Una vez encontrados ambos, realizamos la acción de alquilar
-                        $completado = true;
-                        $socio->alquilar($soporte);
+        $socioExiste = false;
+        $productoExiste = false;
+        try {
+            //Buscamos al socio para identificarlo con el número
+            foreach ($this->socios as $socio) {
+                if ($socio->getNumero() == $numeroCliente) {
+                    $socioExiste = true;
+                    //Identificamos el soporte de la misma manera: 
+                    try {
+                        foreach ($this->productos as $soporte) {
+                            if ($soporte->getNumero() == $numeroSoporte) {
+                                $productoExiste = true;
+                                //Una vez encontrados ambos, realizamos la acción de alquilar
+                                $socio->alquilar($soporte);
+                            }
+                        }
+                        if (!$productoExiste) {
+                            throw new SoporteNoEncontradoException("<p>Error: no existe ese soporte</p>");
+                        }
+                        return $this;
+                        //Capturamos las excepciones e informamos al usuario: 
+                    } catch (CupoSuperadoException $e) {
+                        echo $e->getMessage();
+                    } catch (SoporteYaAlquiladoException $e) {
+                        echo $e->getMessage();
+                    } catch (SoporteNoEncontradoException $e) {
+                        echo $e->getMessage();
                     }
                 }
             }
+            if (!$socioExiste) {
+                throw new ClienteNoEncontradoException("<p>Error: socio no registrado</p>");
+            }
+        } catch (ClienteNoEncontradoException $e) {
+            echo $e->getMessage();
         }
-        if (!$completado) {
-            //Mandamos el mensaje de error por si metemos ids que no existen
-            echo "Error: nº de soporte o nº de socio no encontrado";
+        return $this;
+    }
+
+    public function getNumProductosAlquilados()
+    {
+        return $this->numProductosAlquilados;
+    }
+
+    public function getNumTotalAlquileres()
+    {
+        return $this->numTotalAlquileres;
+    }
+
+    public function alquilarSocioProductos(int $numSocio, array $numerosProductos)
+    {
+        //Inicializamos una variable que se pondrá true si encuentra un producto alquilado (cancela la operación)
+        $ocupado = false;
+        try {
+            foreach ($this->productos as $vcproducto) {
+                foreach ($numerosProductos as $numProducto) {
+                    if ($vcproducto->getNumero() == $numProducto) {
+                        if ($vcproducto->alquilado) {
+                            //Cancelamos
+                            $ocupado = true;
+                        }
+                    }
+                }
+            }
+            if (!$ocupado) {
+                foreach ($numerosProductos as $numProducto) {
+                    $this->alquilaSocioProducto($numSocio, $numProducto);
+                }
+            } else {
+                throw new SoporteYaAlquiladoException("<p>Operación cancelada: uno de los soportes no está disponible</p>");
+            }
+        } catch (SoporteYaAlquiladoException $e) {
+            echo $e->getMessage();
+        }
+        return $this;
+    }
+
+    public function devolverSocioProducto(int $numSocio, int $numeroProducto)
+    {
+        $socioExiste = false;
+        $productoExiste = false;
+        try {
+            //Buscamos al socio para identificarlo con el número
+            foreach ($this->socios as $socio) {
+                if ($socio->getNumero() == $numSocio) {
+                    $socioExiste = true;
+                    //Identificamos el soporte de la misma manera: 
+                    try {
+                        foreach ($this->productos as $soporte) {
+                            if ($soporte->getNumero() == $numeroProducto) {
+                                $productoExiste = true;
+                                //Una vez encontrados ambos, realizamos la acción de devolver
+                                $socio->devolver($soporte->getNumero());
+                                return $this;
+                            }
+                        }
+                        if (!$productoExiste) {
+                            throw new SoporteNoEncontradoException("<p>Error: no existe ese soporte</p>");
+                        }
+                        //Capturamos las excepciones e informamos al usuario: 
+                    } catch (SoporteNoEncontradoException $e) {
+                        echo $e->getMessage();
+                    }
+                }
+            }
+            if (!$socioExiste) {
+                throw new ClienteNoEncontradoException("<p>Error: socio no registrado</p>");
+            }
+        } catch (ClienteNoEncontradoException $e) {
+            echo $e->getMessage();
+        }
+        return $this;
+    }
+
+    public function devolverSocioProductos(int $numSocio, array $numerosProductos)
+    {
+        //Inicializamos una variable que se pondrá true si encuentra un producto que no tiene alquilado
+        $alquilado = true;
+        try {
+            //Recorro los socios para identificarlo 
+            //TODO: SOLUCIONAR: al hacer el recorrido de productos dentro de socios, si el socio no existe lo repite tantas veces como productos haya
+            foreach ($this->socios as $vcsocio) {
+                if ($vcsocio->getNumero() == $numSocio) {
+                    foreach ($numerosProductos as $numProducto) {
+                        //Identificamos el producto
+                        foreach ($this->productos as $producto) {
+                            if ($producto->getNumero() == $numProducto) {
+                                //Comprobamos que el socio tenga alquilado cada soporte
+                                if (!$vcsocio->tieneAlquilado($producto)) {
+                                    //Cancelamos
+                                    $alquilado = false;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            if ($alquilado) {
+                foreach ($numerosProductos as $numProducto) {
+                    $this->devolverSocioProducto($numSocio, $numProducto);
+                }
+            } else {
+                throw new SoporteNoEncontradoException("<p>Operación cancelada: uno de los soportes no lo tenía alquilado</p>");
+            }
+        } catch (SoporteNoEncontradoException $e) {
+            echo $e->getMessage();
         }
         return $this;
     }

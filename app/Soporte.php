@@ -15,6 +15,7 @@ que tenemos en Soporte*/
 abstract class Soporte implements Resumible
 {
     const IVA = 0.21;
+    public $alquilado = false;
 
     public function __construct(
         public String $titulo,

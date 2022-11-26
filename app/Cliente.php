@@ -4,6 +4,11 @@ declare(strict_types=1);
 
 namespace examen\app;
 
+use examen\util\CupoSuperadoException;
+use examen\util\SoporteNoEncontradoException;
+use examen\util\SoporteYaAlquiladoException;
+
+
 class Cliente
 {
     private $soportesAlquilados = []; //Tipo disco, cinta... heredados de soporte
@@ -33,7 +38,7 @@ class Cliente
     }
 
     public function tieneAlquilado(Soporte $s): bool
-    { //TODO:
+    {
         //Recorre el array de soportes y comprueba si está el soporte
         foreach ($this->soportesAlquilados as $alquilado) {
             if ($alquilado->getNumero() == $s->getNumero()) {
@@ -49,17 +54,24 @@ class Cliente
         if (!$this->tieneAlquilado($s)) {
             //Comprobamos que no haya superado el cupo de alquileres
             if ($this->numSoportesAlquilados >= $this->maxAlquilerconcurrente) {
-                echo "<p>Error: ha superado el cupo de alquileres</p>";
+                //Ahora no hace falta que devolver false ni mostremos el error. Tenemos una excepción: 
+                throw new CupoSuperadoException("<p>Error: ha superado el cupo de alquileres</p>");
+                //echo "<p>Error: ha superado el cupo de alquileres</p>";
                 //return false;
-            } else {
+            } else if (!$s->alquilado) {
                 //Añadimos el soporte
                 array_push($this->soportesAlquilados, $s);
                 $this->numSoportesAlquilados++;
+                //Marcamos el soporte como alquilado: 
+                $s->alquilado = true;
                 echo "<p>¡Has alquilado $s->titulo!</p>";
                 //return true; 
+            } else {
+                echo "<p>El soporte no está disponible en estos momentos</p>";
             }
         } else {
-            echo "<p>Ese soporte ya lo tiene alquilado</p>";
+            throw new SoporteYaAlquiladoException("<p>Error: Ese soporte ya lo tiene alquilado</p>");
+            //echo "<p>Ese soporte ya lo tiene alquilado</p>";
             //return false;
         }
         return $this;
@@ -74,6 +86,8 @@ class Cliente
             if ($valor->getNumero() == $numSoporte) {
                 //Si se acepta la devolución, restamos 1 a los soportes alquilados y lo sacamos del array
                 $this->numSoportesAlquilados--;
+                //Indicamos al soporte que ya está disponible: 
+                $valor->alquilado = false;
                 unset($this->soportesAlquilados[$alquilado]);
                 echo "<p>Devolución completada</p>";
                 //return true
@@ -81,7 +95,8 @@ class Cliente
             }
         }
         if (!$completado) {
-            echo "<p>Error: el soporte no estaba alquilado</p>";
+            throw new SoporteNoEncontradoException("<p>Error: el soporte no estaba alquilado</p>");
+            //echo "<p>Error: el soporte no estaba alquilado</p>";
             //return false
         }
         return $this;
