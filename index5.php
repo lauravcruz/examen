@@ -75,5 +75,4 @@ $vc->alquilarSocioProductos(5, [10, 11, 12])->devolverSocioProductos(5, [10, 11,
 $vc->alquilarSocioProductos(5, [10, 11, 12, 2])->devolverSocioProductos(5, [10, 11, 12, 2]);
 
 //Socio no registrado / No existe el soporte 
-$vc->alquilaSocioProducto(100, 2)->devolverSocioProductos(8, [200]);
-
+$vc->alquilaSocioProducto(100, [2, 2, 5])->devolverSocioProductos(5, [26, 27, 29]);

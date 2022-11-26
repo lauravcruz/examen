@@ -199,15 +199,18 @@ class Videoclub
     {
         //Inicializamos una variable que se pondrá true si encuentra un producto que no tiene alquilado
         $alquilado = true;
+        $socioExiste = false;
+        $productoExiste = false;
         try {
             //Recorro los socios para identificarlo 
-            //TODO: SOLUCIONAR: al hacer el recorrido de productos dentro de socios, si el socio no existe lo repite tantas veces como productos haya
             foreach ($this->socios as $vcsocio) {
                 if ($vcsocio->getNumero() == $numSocio) {
+                    $socioExiste = true;
                     foreach ($numerosProductos as $numProducto) {
                         //Identificamos el producto
                         foreach ($this->productos as $producto) {
                             if ($producto->getNumero() == $numProducto) {
+                                $productoExiste = true;
                                 //Comprobamos que el socio tenga alquilado cada soporte
                                 if (!$vcsocio->tieneAlquilado($producto)) {
                                     //Cancelamos
@@ -218,6 +221,16 @@ class Videoclub
                     }
                 }
             }
+            if (!$socioExiste) {
+                /*Aunque en devolver() ya se controla si el socio existe lo repito para evitar que se lance el error
+                    varias veces (al recorrer cada producto lo lanzaba)*/
+                throw new ClienteNoEncontradoException("<p>Error: Socio no registrado </p>");
+            }
+            if (!$productoExiste) {
+                /*Aunque en devolver() ya se controla si el socio existe lo repito para evitar que se lance el error
+                    varias veces (al recorrer cada producto lo lanzaba)*/
+                throw new SoporteNoEncontradoException("<p>Error: no existe ese soporte</p>");
+            }
             if ($alquilado) {
                 foreach ($numerosProductos as $numProducto) {
                     $this->devolverSocioProducto($numSocio, $numProducto);
@@ -226,6 +239,8 @@ class Videoclub
                 throw new SoporteNoEncontradoException("<p>Operación cancelada: uno de los soportes no lo tenía alquilado</p>");
             }
         } catch (SoporteNoEncontradoException $e) {
+            echo $e->getMessage();
+        } catch (ClienteNoEncontradoException $e) {
             echo $e->getMessage();
         }
         return $this;
