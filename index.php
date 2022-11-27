@@ -14,9 +14,6 @@ declare(strict_types=1); ?>
 </head>
 
 <body>
-    <?php
-
-    ?>
     <section class="vh-100 bg-black">
         <div class="container py-5 h-100">
             <div class="row d-flex justify-content-center align-items-center">

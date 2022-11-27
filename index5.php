@@ -22,7 +22,7 @@ $vc->incluirCintaVideo("El nombre de la Rosa", 1.5, 140);
 $vc->incluirSocio("Amancio Ortega", 2);
 $vc->incluirSocio("Pablo Picasso", 2);
 
-/*
+/* 
 $vc->listarSocios();
 
 $vc->alquilaSocioProducto(1, 2); //Has alquilado The Last of Us
