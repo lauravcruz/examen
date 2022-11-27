@@ -28,6 +28,10 @@ $cliente1->alquilar($soporte1);
 $cliente1->alquilar($soporte2);
 $cliente1->alquilar($soporte3);
 
+
+//Al meter en cliente las excepciones, se producirán errores en esta página: 
+//En el index5 capturamos los errores con los try/catch de Videoclub
+
 //voy a intentar alquilar de nuevo un soporte que ya tiene alquilado
 $cliente1->alquilar($soporte1);
 //el cliente tiene 3 soportes en alquiler como máximo
@@ -46,6 +50,7 @@ $cliente2->devolver(2);
 
 //PROBAMOS EL ENCADENAMIENTO DE MÉTODOS: 
 echo "Encadenamiento: ";
+//24 -> 3 ; 23-> 1
 $cliente2->alquilar($soporte1)->devolver(23);
 $cliente2->alquilar($soporte3)->devolver(24)->alquilar($soporte3);
 $cliente2->devolver(24)->alquilar($soporte1);
