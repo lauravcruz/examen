@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace examen\app;
 
+include_once("autoload.php"); 
+
 use examen\util\CupoSuperadoException;
 use examen\util\SoporteNoEncontradoException;
 use examen\util\SoporteYaAlquiladoException;

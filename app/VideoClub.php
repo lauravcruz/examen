@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace examen\app;
 
+include_once("autoload.php");
+
 use examen\util\ClienteNoEncontradoException;
 use examen\util\CupoSuperadoException;
 use examen\util\SoporteNoEncontradoException;
@@ -13,7 +15,7 @@ use examen\util\SoporteYaAlquiladoException;
 //include_once "app/Juego.php";
 // include_once "app/Disco.php";
 // include_once "app/CintaVideo.php";
-include_once("autoload.php");
+
 
 class Videoclub
 {
@@ -60,7 +62,7 @@ class Videoclub
         array_push($this->socios, $cliente);
     }
 
-    public function listarProductos():string
+    public function listarProductos(): string
     {
         //Cambiamos para que devuelva un string almacenable en la SESSION['productos']
         $listarProducto = "<p>PRODUCTOS: </p><ul>";
