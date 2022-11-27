@@ -16,7 +16,7 @@ use examen\util\SoporteYaAlquiladoException;
 // include_once "app/Disco.php";
 // include_once "app/CintaVideo.php";
 
-class Videoclub
+class VideoClub
 {
     private $productos = []; //Tipo soporte
     private $numProductos = 0;

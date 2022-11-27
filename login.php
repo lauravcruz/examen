@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+include_once("index5.php");
+
 if (isset($_POST['login'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
@@ -19,9 +21,9 @@ if (isset($_POST['login'])) {
             include_once "mainCliente.php";
         } else if ($username == "admin" && $password == "admin") {
             //Lo llevamos a mainAdmin
-            include_once("index5.php");
+
             session_start();
-            //Cargamos el videoclub de prueba del index5
+            //Cargamos el videoClub de prueba del index5
             $_SESSION['user'] = $username;
             $_SESSION['clientes'] = $vc->listarSocios();
             $_SESSION['soportes'] = $vc->listarProductos();

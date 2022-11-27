@@ -1,9 +1,9 @@
 <?php
 include_once("autoload.php");
 
-use examen\app\Videoclub;
+use examen\app\VideoClub;
 
-$vc = new Videoclub("Severo 8A");
+$vc = new VideoClub("Severo 8A");
 
 //voy a incluir unos cuantos soportes de prueba 
 $vc->incluirJuego("God of War", 19.99, "PS4", 1, 1);
