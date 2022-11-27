@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 function autoload($nombreClase)
 {
-    $dir = str_replace("\\", "/", $nombreClase); 
+    $dir = "../";
+    $dir .= str_replace("\\", "/", $nombreClase);
     include_once $dir . ".php";
 };
 
