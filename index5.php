@@ -1,7 +1,4 @@
 <?php
-
-namespace examen;
-
 include_once("autoload.php");
 
 use examen\app\Videoclub;
