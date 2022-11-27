@@ -1,5 +1,7 @@
 <?php
 //include_once "app/Videoclub.php";
+namespace examen;
+
 include_once("autoload.php");
 
 use examen\app\Videoclub;
@@ -7,7 +9,6 @@ use examen\app\Videoclub;
 $vc = new Videoclub("Severo 8A");
 
 //voy a incluir unos cuantos soportes de prueba 
-
 $vc->incluirJuego("God of War", 19.99, "PS4", 1, 1);
 $vc->incluirJuego("The Last of Us Part II", 49.99, "PS4", 1, 1);
 $vc->incluirDvd("Torrente",  4.5, "es", "16:9");
@@ -24,6 +25,7 @@ $vc->listarProductos();
 $vc->incluirSocio("Amancio Ortega", 2);
 $vc->incluirSocio("Pablo Picasso", 2);
 
+/*
 $vc->listarSocios();
 
 $vc->alquilaSocioProducto(1, 2); //Has alquilado The Last of Us
@@ -76,3 +78,4 @@ $vc->alquilarSocioProductos(5, [10, 11, 12, 2])->devolverSocioProductos(5, [10, 
 
 //Socio no registrado / No existe el soporte 
 $vc->alquilaSocioProducto(100, [2, 2, 5])->devolverSocioProductos(5, [26, 27, 29]);
+*/

@@ -60,23 +60,27 @@ class Videoclub
         array_push($this->socios, $cliente);
     }
 
-    public function listarProductos()
+    public function listarProductos():string
     {
-        echo "<p>PRODUCTOS: </p><ul>";
+        //Cambiamos para que devuelva un string almacenable en la SESSION['productos']
+        $listarProducto = "<p>PRODUCTOS: </p><ul>";
         foreach ($this->productos as $producto) {
-            echo "<li>$producto->titulo</li>";
+            $listarProducto .= "<li>$producto->titulo</li>";
         }
-        echo "</ul>";
+        $listarProducto .= "</ul>";
+        return $listarProducto;
     }
 
-    public function listarSocios()
+    public function listarSocios(): string
     {
-        echo "<p>SOCIOS: </p><ul>";
+        $listarSocio = "<p>SOCIOS: </p><ul>";
+
         foreach ($this->socios as $socio) {
-            echo "<li>$socio->nombre</li>";
-            echo $socio->listaAlquileres();
+            $listarSocio .= "<li>$socio->nombre</li>";
+            //echo $socio->listaAlquileres();
         }
-        echo "</ul>";
+        $listarSocio .= "</ul>";
+        return $listarSocio;
     }
 
     public function alquilaSocioProducto($numeroCliente, $numeroSoporte)
