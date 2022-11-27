@@ -1,5 +1,5 @@
 <?php
-//include_once "app/Videoclub.php";
+
 namespace examen;
 
 include_once("autoload.php");
