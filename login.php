@@ -19,9 +19,9 @@ if (isset($_POST['login'])) {
             include_once "mainCliente.php";
         } else if ($username == "admin" && $password == "admin") {
             //Lo llevamos a mainAdmin
+            include_once("index5.php");
             session_start();
             //Cargamos el videoclub de prueba del index5
-            include_once("index5.php");
             $_SESSION['user'] = $username;
             $_SESSION['clientes'] = $vc->listarSocios();
             $_SESSION['soportes'] = $vc->listarProductos();
