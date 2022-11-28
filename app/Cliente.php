@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace examen\app;
 
-include_once("autoload.php"); 
+include_once("autoload.php");
 
 use examen\util\CupoSuperadoException;
 use examen\util\SoporteNoEncontradoException;
@@ -19,7 +19,9 @@ class Cliente
     public function __construct(
         public String $nombre,
         private int $numero,
-        private int $maxAlquilerconcurrente = 3
+        private int $maxAlquilerconcurrente = 3,
+        public String $username,
+        private String $password
     ) {
     }
 
