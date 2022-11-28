@@ -24,7 +24,7 @@ $vc->incluirCintaVideo("El nombre de la Rosa", 1.5, 140);
 $vc->incluirSocio("Amancio Ortega", "amancio", "amancio", 2);
 $vc->incluirSocio("Pablo Picasso", "pablo", "pablo",  2);
 
-/* 
+/* Dejamos todo esto comentado para poder insertar SOLO el videoclub en la sesión del admin (ver en login) 
 $vc->listarSocios();
 
 $vc->alquilaSocioProducto(1, 2); //Has alquilado The Last of Us

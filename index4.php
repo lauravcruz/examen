@@ -10,9 +10,10 @@ use examen\app\Juego;
 use examen\app\Disco;
 use examen\app\CintaVideo;
 
+/* Esto lo dejamos comentado porque si no da fallo: ahora el constructor debe llevar username y password
 $cliente1 = new Cliente("Bruce Wayne", 23);
 $cliente2 = new Cliente("Clark Kent", 33);
-
+*/
 //mostramos el número de cada cliente creado 
 echo "<br>El identificador del cliente 1 es: " . $cliente1->getNumero();
 echo "<br>El identificador del cliente 2 es: " . $cliente2->getNumero();
