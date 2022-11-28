@@ -19,13 +19,13 @@ if (isset($_POST['login'])) {
             $_SESSION['user'] = $username;
             include_once "mainCliente.php";
         } else if ($username == "admin" && $password == "admin") {
-            //Lo llevamos a mainAdmin
+            //Cargamos el videoClub de prueba del index5
             include_once("index5.php");
             session_start();
-            //Cargamos el videoClub de prueba del index5
             $_SESSION['user'] = $username;
             $_SESSION['clientes'] = $vc->listarSocios();
             $_SESSION['soportes'] = $vc->listarProductos();
+            //Lo llevamos a mainAdmin
             include_once "mainAdmin.php";
         } else {
             // Si las credenciales no son válidas, se vuelven a pedir

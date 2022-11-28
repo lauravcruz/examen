@@ -20,7 +20,7 @@ $vc->incluirCintaVideo("El nombre de la Rosa", 1.5, 140);
 //voy a crear algunos socios: 
 //he cambiado el máximo de alquileres para que cuadre con el ejemplo de la siguiente parte (dice que el socio 1 tenía como máximo 2) 
 
-//Para la etiqueta v2.0 tenemos que añadir el username y la contraseña cuando creamos un usuario
+//Para la etiqueta v3.0 tenemos que añadir el username y la contraseña cuando creamos un usuario
 $vc->incluirSocio("Amancio Ortega", "amancio", "amancio", 2);
 $vc->incluirSocio("Pablo Picasso", "pablo", "pablo",  2);
 

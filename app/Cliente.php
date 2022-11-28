@@ -93,8 +93,8 @@ class Cliente
                 $this->numSoportesAlquilados--;
                 //Indicamos al soporte que ya está disponible: 
                 $valor->alquilado = false;
+                echo "<p>Has devuelto " . $valor->getNombre() . ". </p>";
                 unset($this->soportesAlquilados[$alquilado]);
-                echo "<p>Devolución completada</p>";
                 //return true
                 $completado = true;
             }
