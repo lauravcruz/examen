@@ -26,7 +26,7 @@ if (!isset($_SESSION['user'])) {
 <main>
         <div class="container-fluid p-5">
             <h1 class="display-1 text-center">Bienvenid@ <?php echo $_SESSION['user'] ?></h1>
-            <a class="nav-link active text-secondary" aria-current="page" href="logout.php">LOG OUT</a>
+            <a class="btn btn-primary" aria-current="page" href="logout.php">LOG OUT</a>
         </div>
     </main>
 </body>

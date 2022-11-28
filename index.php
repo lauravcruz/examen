@@ -14,13 +14,13 @@ declare(strict_types=1); ?>
 </head>
 
 <body>
-    <section class="vh-100 bg-black">
+    <section class="vh-100 bg-secondary">
         <div class="container py-5 h-100">
             <div class="row d-flex justify-content-center align-items-center">
                 <div class="col-12 col-md-8 col-lg-6 col-xl-5">
                     <div class="card shadow-2-strong">
                         <div class="card-body p-5 text-center">
-                            <h3 class="mb-5 text-danger">INICIA SESIÓN</h3>
+                            <h3 class="mb-5 text-primary">INICIAR SESIÓN</h3>
                             <form action="login.php" method="POST">
                                 <div><span class='errores'>
                                         <!--Imprimimos los errores que devuelve el controlador en caso de que los haya-->

@@ -54,10 +54,10 @@ class VideoClub
         $juego = new Juego($titulo, $this->numProductos, $precio, $consola, $minJ, $maxJ);
         $this->incluirProducto($juego);
     }
-    public function incluirSocio($nombre, $maxAlquileresConcurrentes = 3)
+    public function incluirSocio($nombre, $username, $password, $maxAlquileresConcurrentes = 3)
     {
         ++$this->numSocios;
-        $cliente = new Cliente($nombre, $this->numSocios, $maxAlquileresConcurrentes, $nombre, $nombre);
+        $cliente = new Cliente($nombre, $this->numSocios, $username, $password,  $maxAlquileresConcurrentes);
         array_push($this->socios, $cliente);
     }
 
@@ -77,7 +77,8 @@ class VideoClub
         $listarSocio = "<p>SOCIOS: </p><ul>";
 
         foreach ($this->socios as $socio) {
-            $listarSocio .= "<li>$socio->nombre $socio->username</li>";
+            //Añadimos el username: 
+            $listarSocio .= "<li>$socio->nombre"  . ". Username: " . $socio->username . "</li>";
             //echo $socio->listaAlquileres();
         }
         $listarSocio .= "</ul>";

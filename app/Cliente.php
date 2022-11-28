@@ -19,9 +19,10 @@ class Cliente
     public function __construct(
         public String $nombre,
         private int $numero,
-        private int $maxAlquilerconcurrente = 3,
+        //Para el ejercicio 10 añadimos los campos de usuario y contraseña:  
         public String $username,
-        private String $password
+        private String $password,
+        private int $maxAlquilerconcurrente = 3,
     ) {
     }
 

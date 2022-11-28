@@ -27,7 +27,7 @@ if (!isset($_SESSION['user'])) {
     <main>
         <div class="container-fluid p-5">
             <h1 class="display-1 text-center">Bienvenid@ <?php echo $_SESSION['user'] ?></h1>
-            <a class="nav-link active text-primary" aria-current="page" href="logout.php">LOG OUT</a>
+            
             <?php if (isset($_SESSION['user'])) {
                 if ($_SESSION['user'] == 'admin') {
                     echo $_SESSION['clientes'];
@@ -35,6 +35,7 @@ if (!isset($_SESSION['user'])) {
                 }
             }
             ?>
+            <a class="btn btn-primary" aria-current="page" href="logout.php">LOG OUT</a>
 
         </div>
     </main>
